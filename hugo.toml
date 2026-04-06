@@ -1,7 +1,6 @@
 baseURL = "https://littlepaperthings.com/"
 languageCode = "en-gb"
 title = "Little Paper Things"
-theme = ""
 
 [params]
   tagline = "a surprise in every envelope"
