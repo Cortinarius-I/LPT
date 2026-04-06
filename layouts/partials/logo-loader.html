@@ -1,9 +1,8 @@
 {{/* Logo loader overlay — the logo animates as a loading sequence. 
      The SVG must be inlined for CSS animation to target internal element IDs.
      See CLAUDE.md for animation timing details. */}}
-<div class="loader-overlay" id="loader">
-  <div class="logo-container" id="logo-anim">
-    {{/* Inline the SVG so we can target #pinwheel-blades, #logo-text etc with CSS */}}
-    {{ readFile "static/images/lptlogogrouped.svg" | safeHTML }}
-  </div>
+<div class="loader-overlay" id="loader"></div>
+<div class="logo-container" id="logo-anim">
+  {{/* Inline the SVG so we can target #pinwheel-blades, #logo-text etc with CSS */}}
+  {{ readFile "static/images/lptlogogrouped.svg" | safeHTML }}
 </div>

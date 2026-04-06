@@ -103,7 +103,12 @@ a {
 .logo-container {
   width: 420px;
   height: 280px;
-  position: relative;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1001;
+  pointer-events: none;
 }
 
 .logo-container svg {
@@ -113,10 +118,9 @@ a {
 
 /* Pinwheel continuous spin */
 #pinwheel-blades {
-  /* NOTE: These transform-origin values may need fine-tuning.
-     If the pinwheel wobbles, adjust by a few pixels.
-     See CLAUDE.md for how these were computed. */
-  transform-origin: 124.7px 25.8px;
+  /* The center of rotation is exactly 146.429px 191.239px in its local coordinate space.
+     Using transform-box: fill-box doesn't work for arbitrary centers, so we just specify the px. */
+  transform-origin: 146.43px 191.24px;
   animation: spin 1.2s linear infinite;
 }
 

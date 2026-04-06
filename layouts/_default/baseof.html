@@ -31,24 +31,29 @@
 
       sessionStorage.setItem('lpt-loaded', '1');
 
-      // Phase 3: Decelerate pinwheel
+      // Phase 3: Decelerate pinwheel and dock logo
       setTimeout(function() {
         var logoAnim = document.getElementById('logo-anim');
-        if (logoAnim) logoAnim.classList.add('decelerate');
+        if (logoAnim) {
+          logoAnim.classList.add('decelerate');
+          logoAnim.classList.add('logo-docked');
+        }
       }, 2400);
 
-      // Phase 4: Dock logo
-      setTimeout(function() {
-        var logoAnim = document.getElementById('logo-anim');
-        if (logoAnim) logoAnim.classList.add('logo-docked');
-      }, 2800);
-
-      // Phase 5: Show page
+      // Phase 4: Show page
       setTimeout(function() {
         if (loader) loader.classList.add('fade-out');
         if (page) page.classList.add('visible');
         if (nav) nav.classList.add('visible');
       }, 3100);
+
+      // Phase 5: Hide animated logo after static nav logo is visible
+      setTimeout(function() {
+        var logoAnim = document.getElementById('logo-anim');
+        if (logoAnim) {
+          logoAnim.style.display = 'none';
+        }
+      }, 3800);
     })();
   </script>
 </body>
