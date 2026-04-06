@@ -1,0 +1,25 @@
+{{ define "main" }}
+<section class="hero">
+  <p class="tagline">{{ .Params.hero_tagline }}</p>
+  <h1>{{ .Params.hero_heading }}</h1>
+  <p>{{ .Params.hero_body }}</p>
+  <a class="cta" href="{{ .Params.hero_cta_link }}">{{ .Params.hero_cta_text }}</a>
+</section>
+
+<div class="divider"></div>
+
+<section class="cards">
+  <div class="card">
+    <h3>Choose your plan</h3>
+    <p>Monthly, quarterly, or gift a one-off surprise to someone you love. Each envelope is different.</p>
+  </div>
+  <div class="card">
+    <h3>We curate &amp; craft</h3>
+    <p>Every envelope is assembled by hand with paper goods sourced from independent makers and small studios.</p>
+  </div>
+  <div class="card">
+    <h3>Joy in the post</h3>
+    <p>No tracking, no rush. Just the quiet thrill of finding something beautiful in your letterbox.</p>
+  </div>
+</section>
+{{ end }}

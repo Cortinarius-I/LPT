@@ -1,0 +1,13 @@
+baseURL = "https://littlepaperthings.com/"
+languageCode = "en-gb"
+title = "Little Paper Things"
+theme = ""
+
+[params]
+  tagline = "a surprise in every envelope"
+  description = "A subscription of hand-picked paper treasures — stickers, bookmarks, cards, and little things that make you smile — sealed in a surprise envelope and sent by snail mail."
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

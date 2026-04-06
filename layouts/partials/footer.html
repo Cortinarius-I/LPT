@@ -1,0 +1,18 @@
+<footer>
+  <div class="footer-inner">
+    <p class="footer-tagline">Little Paper Things</p>
+    <p class="footer-copy">&copy; {{ now.Year }} Little Paper Things. Made with love and paper.</p>
+  </div>
+</footer>
+<script>
+  // Netlify Identity redirect after login
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", function(user) {
+      if (!user) {
+        window.netlifyIdentity.on("login", function() {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>

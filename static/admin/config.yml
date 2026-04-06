@@ -1,0 +1,62 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: static/images/uploads
+public_folder: /images/uploads
+
+collections:
+  - name: pages
+    label: Pages
+    files:
+      - name: home
+        label: Home Page
+        file: content/_index.md
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Description, name: description, widget: text }
+          - { label: Hero Heading, name: hero_heading, widget: string }
+          - { label: Hero Tagline, name: hero_tagline, widget: string }
+          - { label: Hero Body, name: hero_body, widget: text }
+          - { label: CTA Text, name: hero_cta_text, widget: string }
+          - { label: CTA Link, name: hero_cta_link, widget: string }
+      - name: how-it-works
+        label: How It Works
+        file: content/how-it-works.md
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Description, name: description, widget: text }
+          - { label: Body, name: body, widget: markdown }
+      - name: about
+        label: About
+        file: content/about.md
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Description, name: description, widget: text }
+          - { label: Body, name: body, widget: markdown }
+      - name: gift
+        label: Gift a Subscription
+        file: content/gift.md
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Description, name: description, widget: text }
+          - { label: Body, name: body, widget: markdown }
+      - name: subscribe
+        label: Subscribe
+        file: content/subscribe.md
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Description, name: description, widget: text }
+          - { label: Body, name: body, widget: markdown }
+
+  - name: past-envelopes
+    label: Past Envelopes
+    folder: content/past-envelopes
+    create: true
+    slug: "{{year}}-{{month}}-{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Date, name: date, widget: datetime }
+      - { label: Description, name: description, widget: text }
+      - { label: Cover Image, name: image, widget: image, required: false }
+      - { label: Body, name: body, widget: markdown }

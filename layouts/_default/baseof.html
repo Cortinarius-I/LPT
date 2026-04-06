@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {{- partial "head.html" . -}}
+</head>
+<body>
+  {{- partial "logo-loader.html" . -}}
+  {{- partial "nav.html" . -}}
+
+  <main id="page" class="page-content">
+    {{- block "main" . }}{{- end }}
+  </main>
+
+  {{- partial "footer.html" . -}}
+
+  <script>
+    // Logo loader animation controller
+    (function() {
+      const seen = sessionStorage.getItem('lpt-loaded');
+      const loader = document.getElementById('loader');
+      const page = document.getElementById('page');
+      const nav = document.getElementById('nav');
+
+      if (seen) {
+        // Skip animation on revisit
+        if (loader) loader.style.display = 'none';
+        if (page) page.classList.add('visible');
+        if (nav) nav.classList.add('visible');
+        return;
+      }
+
+      sessionStorage.setItem('lpt-loaded', '1');
+
+      // Phase 3: Decelerate pinwheel
+      setTimeout(function() {
+        var logoAnim = document.getElementById('logo-anim');
+        if (logoAnim) logoAnim.classList.add('decelerate');
+      }, 2400);
+
+      // Phase 4: Dock logo
+      setTimeout(function() {
+        var logoAnim = document.getElementById('logo-anim');
+        if (logoAnim) logoAnim.classList.add('logo-docked');
+      }, 2800);
+
+      // Phase 5: Show page
+      setTimeout(function() {
+        if (loader) loader.classList.add('fade-out');
+        if (page) page.classList.add('visible');
+        if (nav) nav.classList.add('visible');
+      }, 3100);
+    })();
+  </script>
+</body>
+</html>
