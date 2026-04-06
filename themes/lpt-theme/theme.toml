@@ -1,0 +1,4 @@
+name = "lpt-theme"
+description = "Little Paper Things Theme"
+license = "MIT"
+min_version = "0.110.0"

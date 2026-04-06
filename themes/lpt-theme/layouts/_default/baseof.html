@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+<head>
+    {{ partial "head.html" . }}
+</head>
+<body>
+    <div id="loader" class="fixed inset-0 bg-[#faf8f4] z-[100] flex items-center justify-center transition-opacity duration-700">
+        {{ partial "logo-animated.html" . }}
+    </div>
+
+    <header class="p-6 flex justify-between items-center">
+        <a href="/" class="logo-docked opacity-0 transition-opacity duration-500">
+            {{ partial "logo-animated.html" . }}
+        </a>
+        <button class="text-[#a03c2f]"><i class="material-icons">menu</i></button>
+    </header>
+
+    <main>
+        {{ block "main" . }}{{ end }}
+    </main>
+
+    {{ partial "footer.html" . }}
+
+    <script>
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').style.opacity = '0';
+                document.querySelector('.logo-docked').style.opacity = '1';
+                setTimeout(() => {
+                    document.getElementById('loader').style.display = 'none';
+                }, 700);
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
