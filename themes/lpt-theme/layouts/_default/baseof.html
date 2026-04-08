@@ -1,36 +1,60 @@
 <!DOCTYPE html>
-<html lang="{{ .Site.LanguageCode }}">
+<html lang="en">
 <head>
-    {{ partial "head.html" . }}
+  {{- partial "head.html" . -}}
 </head>
 <body>
-    <div id="loader" class="fixed inset-0 bg-[#faf8f4] z-[100] flex items-center justify-center transition-opacity duration-700">
-        {{ partial "logo-animated.html" . }}
-    </div>
+  {{- partial "logo-loader.html" . -}}
+  {{- partial "nav.html" . -}}
 
-    <header class="p-6 flex justify-between items-center">
-        <a href="/" class="logo-docked opacity-0 transition-opacity duration-500">
-            {{ partial "logo-animated.html" . }}
-        </a>
-        <button class="text-[#a03c2f]"><i class="material-icons">menu</i></button>
-    </header>
+  <main id="page" class="page-content">
+    {{- block "main" . }}{{- end }}
+  </main>
 
-    <main>
-        {{ block "main" . }}{{ end }}
-    </main>
+  {{- partial "footer.html" . -}}
 
-    {{ partial "footer.html" . }}
+  <script>
+    // Logo loader animation controller
+    (function() {
+      const seen = sessionStorage.getItem('lpt-loaded');
+      const loader = document.getElementById('loader');
+      const page = document.getElementById('page');
+      const nav = document.getElementById('nav');
 
-    <script>
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('loader').style.opacity = '0';
-                document.querySelector('.logo-docked').style.opacity = '1';
-                setTimeout(() => {
-                    document.getElementById('loader').style.display = 'none';
-                }, 700);
-            }, 2000);
-        });
-    </script>
+      if (seen) {
+        // Skip animation on revisit
+        if (loader) loader.style.display = 'none';
+        if (page) page.classList.add('visible');
+        if (nav) nav.classList.add('visible');
+        return;
+      }
+
+      sessionStorage.setItem('lpt-loaded', '1');
+
+      // Phase 3: Decelerate pinwheel and dock logo
+      setTimeout(function() {
+        var logoAnim = document.getElementById('logo-anim');
+        if (logoAnim) {
+          logoAnim.classList.add('decelerate');
+          logoAnim.classList.add('logo-docked');
+        }
+      }, 2400);
+
+      // Phase 4: Show page
+      setTimeout(function() {
+        if (loader) loader.classList.add('fade-out');
+        if (page) page.classList.add('visible');
+        if (nav) nav.classList.add('visible');
+      }, 3100);
+
+      // Phase 5: Hide animated logo after static nav logo is visible
+      setTimeout(function() {
+        var logoAnim = document.getElementById('logo-anim');
+        if (logoAnim) {
+          logoAnim.style.display = 'none';
+        }
+      }, 3800);
+    })();
+  </script>
 </body>
 </html>

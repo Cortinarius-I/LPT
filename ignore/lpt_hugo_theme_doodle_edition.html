@@ -1,0 +1,81 @@
+# Hugo Theme: Little Paper Things (Doodle Edition)
+
+This is a complete Hugo theme based on the quirky, doodly redesign. It features the deep violet background, cream paper card layouts, and the interactive SVG logo loader.
+
+## Directory Structure
+```text
+themes/lpt-doodle/
+├── assets/
+│   └── css/
+│       └── main.css             <-- Doodly box styles & paper textures
+├── layouts/
+│   ├── _default/
+│   │   ├── baseof.html          <-- Site shell with working SVG loader
+│   │   ├── list.html            <-- Archive layout
+│   │   └── single.html
+│   ├── index.html               <-- Home page with paper card sections
+│   └── partials/
+│       ├── footer.html
+│       ├── header.html
+│       ├── logo-animated.html   <-- Embedded SVG with CSS animations
+│       └── subscribe-card.html  <-- Envelope-reveal signup component
+└── theme.toml
+```
+
+## Global Styles (main.css)
+```css
+:root {
+  --bg-deep-violet: #2e1a47;
+  --paper-cream: #fdf6e3;
+  --ink-maroon: #5d1a2d;
+  --ink-purple-hover: #4b0082;
+  --wax-red: #a03c2f;
+  --font-heading: 'Epilogue', sans-serif;
+  --font-doodle: 'Patrick Hand', cursive;
+}
+
+body {
+  background-color: var(--bg-deep-violet);
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-heading);
+}
+
+.paper-card {
+  background: var(--paper-cream);
+  margin: 20px;
+  padding: 24px;
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px; /* Hand-drawn look */
+  border: 2px solid #333;
+  box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+}
+
+h1, h2, h3 {
+  color: var(--ink-maroon);
+  transition: color 0.3s ease;
+}
+
+h1:hover { color: var(--ink-purple-hover); }
+
+/* SVG Animation Logic */
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+#pinwheel-blades { transform-origin: center; animation: spin 2s linear infinite; }
+```
+
+## Loader Implementation (baseof.html)
+```html
+<div id="loader" style="position:fixed; inset:0; background:#2e1a47; z-index:999; display:flex; align-items:center; justify-content:center;">
+    <!-- Embedded SVG Logo here -->
+</div>
+
+<script>
+window.onload = () => {
+  setTimeout(() => {
+    const loader = document.getElementById('loader');
+    loader.style.transition = 'opacity 0.8s ease';
+    loader.style.opacity = '0';
+    setTimeout(() => loader.remove(), 800);
+  }, 2000);
+};
+</script>
+```
